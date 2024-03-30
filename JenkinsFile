@@ -21,7 +21,8 @@ pipeline {
                 }
             }
         }
-    }
+    }  
+    
     post {
         success {
             mail to: 'fatimajamshaidkhan2@gmail.com',
