@@ -7,7 +7,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build('my-app:${BUILD_NUMBER}')
+                    docker.build('fatima:${BUILD_NUMBER}')
                 }
             }
         }
