@@ -26,7 +26,7 @@ pipeline {
         success {
             mail to: 'fatimajamshaidkhan2@gmail.com',
                  subject: "Deployment Successful: ${env.JOB_NAME} ${env.BUILD_NUMBER}",
-                 body: "The deployment of build ${env.BUILD_NUMBER} was successful."
+                 body: "The deployment of build ${env.BUILD_NUMBER} was successful :)."
         }
     }
 }
