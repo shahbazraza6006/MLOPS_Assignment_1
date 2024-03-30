@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Popularity Prediction</title>
+</head>
+<body>
+    <h2>Movie Popularity Prediction </h2>
+    
+    <label for="budget">Budget:</label>
+    <input type="number" id="budget" name="budget" required>
+    <br>
+    <label for="runtime">Runtime (in minutes):</label>
+    <input type="number" id="runtime" name="runtime" required>
+    <br>
+    <button id="predictButton">Predict Popularity</button>
+    <p id="predictionResult"></p>
+
+    <script>
+        document.getElementById('predictButton').addEventListener('click', function(event) {
+            var budget = document.getElementById('budget').value;
+            var runtime = document.getElementById('runtime').value;
+
+            // API call to Flask backend
+            fetch('http://127.0.0.1:5000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({budget: budget, runtime: runtime}),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('predictionResult').innerHTML = 'Predicted Popularity: ' + data.popularity;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+            // Explicitly prevent default action here (though it should not be necessary in this setup)
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>
